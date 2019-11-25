@@ -15,6 +15,7 @@
 		04972F5A238A853500F2845D /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F59238A853500F2845D /* MessageTableViewController.swift */; };
 		04972F5C238A854F00F2845D /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F5B238A854F00F2845D /* DiscoverTableViewController.swift */; };
 		04972F5E238A855B00F2845D /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F5D238A855B00F2845D /* ProfileTableViewController.swift */; };
+		04972F61238B946300F2845D /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F60238B946300F2845D /* UIButton-Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		04972F59238A853500F2845D /* MessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		04972F5B238A854F00F2845D /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
 		04972F5D238A855B00F2845D /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		04972F60238B946300F2845D /* UIButton-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		04972F4D238A845200F2845D /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				04972F5F238B941500F2845D /* Extension */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -151,6 +154,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		04972F5F238B941500F2845D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				04972F60238B946300F2845D /* UIButton-Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04972F5E238A855B00F2845D /* ProfileTableViewController.swift in Sources */,
+				04972F61238B946300F2845D /* UIButton-Extension.swift in Sources */,
 				04972F58238A851200F2845D /* HomeTableViewController.swift in Sources */,
 				04972F56238A84DD00F2845D /* MainViewController.swift in Sources */,
 				04972F5A238A853500F2845D /* MessageTableViewController.swift in Sources */,

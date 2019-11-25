@@ -9,22 +9,72 @@
 import UIKit
 
 class MainViewController: UITabBarController {
-
+    
+    // MARK: - 懒加载控件
+    private lazy var composedButton: UIButton =  UIButton(imageName: "tabbar_compose_icon_add", backImageName: "tabbar_compose_button")
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // 会创建tabBar中所有控制器对应的按钮
+        super.viewWillAppear(animated)
+        
+        // 将 + 按钮带到最前面
+        tabBar.bringSubviewToFront(composedButton)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        
+        // 添加子视图控制器并不会创建 tabBar 中的按钮
+        // 懒加载是无处不在的，所有的控件都是延迟创建的。
+        // 所以会导致 composeButton 在原有的 tabbarChild 的按钮下面
+        
+        addChildViewControllers()
+        
+        setupComposeButton()
+        
+    }
+    private func setupComposeButton() {
+        // 1.添加按钮
+        tabBar.addSubview(composedButton)
+        
+        
+        // 2.调整按钮
+        let count = children.count
+        
+        // 3. -1 是让按钮宽一点，能够解决手指点击的容错问题
+        let w = tabBar.bounds.width / CGFloat(count) - 1
+        
+        composedButton.frame = tabBar.bounds.insetBy(dx: 2*w,dy: 0)
+        
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func addChildViewControllers() {
+        addChild(vc: HomeTableViewController(), title: "首页热点", imageName: "tabbar_home")
+        addChild(vc: MessageTableViewController(), title: "消息", imageName: "tabbar_message_center")
+        
+        addChild(UIViewController())
+        
+        addChild(vc: DiscoverTableViewController(), title: "发现", imageName: "tabbar_discover")
+        addChild(vc: ProfileTableViewController(), title: "用户中心", imageName: "tabbar_profile")
     }
-    */
+    
+    private func addChild(vc: UIViewController, title: String, imageName: String) {
+        // 实例化导航视图控制器
+        let nav = UINavigationController(rootViewController: vc)
+        
+        // 设置tabbar点击的高亮颜色
+        tabBar.tintColor = UIColor.orange
+        
+        vc.title = title
+        vc.tabBarItem.image = UIImage(named: imageName)
+        
+        // 添加
+        addChild(nav)
+    }
+    
 
 }
