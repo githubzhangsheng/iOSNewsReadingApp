@@ -20,12 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
         
-        // 设置根视图控制器
+        // 设置主题色
+        setThemeColor()
         
+        // 设置根视图控制器
         window?.rootViewController = MainViewController()
         
         
         return true
+    }
+    
+    // 设置主题色
+    private func setThemeColor() {
+//        UINavigationBar.appearance().tintColor = UIColor.orange
+        UITabBar.appearance().tintColor = themeColor
     }
 
     // MARK: UISceneSession Lifecycle

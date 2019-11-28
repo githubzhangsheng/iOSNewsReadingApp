@@ -13,6 +13,12 @@ class MainViewController: UITabBarController {
     // MARK: - 懒加载控件
     private lazy var composedButton: UIButton =  UIButton(imageName: "tabbar_compose_icon_add", backImageName: "tabbar_compose_button")
     
+    // MARK: - 监听方法
+    // 点击撰写按钮
+    @objc private func clickComposedButton() {
+        print("点我了")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         // 会创建tabBar中所有控制器对应的按钮
@@ -21,11 +27,10 @@ class MainViewController: UITabBarController {
         // 将 + 按钮带到最前面
         tabBar.bringSubviewToFront(composedButton)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
         // 添加子视图控制器并不会创建 tabBar 中的按钮
         // 懒加载是无处不在的，所有的控件都是延迟创建的。
         // 所以会导致 composeButton 在原有的 tabbarChild 的按钮下面
@@ -48,13 +53,15 @@ class MainViewController: UITabBarController {
         
         composedButton.frame = tabBar.bounds.insetBy(dx: 2*w,dy: 0)
         
+        // 4. 添加监听方法
+        composedButton.addTarget(self, action:#selector(clickComposedButton), for: .touchUpInside)
         
         
     }
     
     private func addChildViewControllers() {
         addChild(vc: HomeTableViewController(), title: "首页热点", imageName: "tabbar_home")
-        addChild(vc: MessageTableViewController(), title: "消息", imageName: "tabbar_message_center")
+        addChild(vc: MessageTableViewController(), title: "最新消息", imageName: "tabbar_message_center")
         
         addChild(UIViewController())
         
@@ -67,7 +74,7 @@ class MainViewController: UITabBarController {
         let nav = UINavigationController(rootViewController: vc)
         
         // 设置tabbar点击的高亮颜色
-        tabBar.tintColor = UIColor.orange
+//        tabBar.tintColor = UIColor.orange
         
         vc.title = title
         vc.tabBarItem.image = UIImage(named: imageName)

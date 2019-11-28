@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047C479A238FBD0600C79D75 /* Pods_新闻阅读APP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047C4799238FBD0600C79D75 /* Pods_新闻阅读APP.framework */; };
+		047C479B238FBD0600C79D75 /* Pods_新闻阅读APP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 047C4799238FBD0600C79D75 /* Pods_新闻阅读APP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04972F36238A68A000F2845D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F35238A68A000F2845D /* AppDelegate.swift */; };
 		04972F3F238A68A200F2845D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04972F3E238A68A200F2845D /* Assets.xcassets */; };
 		04972F42238A68A200F2845D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04972F40238A68A200F2845D /* LaunchScreen.storyboard */; };
@@ -16,9 +18,27 @@
 		04972F5C238A854F00F2845D /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F5B238A854F00F2845D /* DiscoverTableViewController.swift */; };
 		04972F5E238A855B00F2845D /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F5D238A855B00F2845D /* ProfileTableViewController.swift */; };
 		04972F61238B946300F2845D /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F60238B946300F2845D /* UIButton-Extension.swift */; };
+		04972F67238BC8FE00F2845D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F66238BC8FE00F2845D /* BaseTableViewController.swift */; };
+		04972F6A238BCD5800F2845D /* VisitorLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F69238BCD5800F2845D /* VisitorLoginView.swift */; };
+		04972F6C238C1F3300F2845D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04972F6B238C1F3300F2845D /* Common.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		047C479C238FBD0700C79D75 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				047C479B238FBD0600C79D75 /* Pods_新闻阅读APP.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		047C4799238FBD0600C79D75 /* Pods_新闻阅读APP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = "Pods_新闻阅读APP.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04972F32238A68A000F2845D /* 新闻阅读APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "新闻阅读APP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04972F35238A68A000F2845D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04972F3E238A68A200F2845D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -30,6 +50,12 @@
 		04972F5B238A854F00F2845D /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
 		04972F5D238A855B00F2845D /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		04972F60238B946300F2845D /* UIButton-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
+		04972F66238BC8FE00F2845D /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		04972F69238BCD5800F2845D /* VisitorLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorLoginView.swift; sourceTree = "<group>"; };
+		04972F6B238C1F3300F2845D /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		3CA5FE8E86E6F108854ADA45 /* Pods-新闻阅读APP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-新闻阅读APP.release.xcconfig"; path = "Target Support Files/Pods-新闻阅读APP/Pods-新闻阅读APP.release.xcconfig"; sourceTree = "<group>"; };
+		5CC167424564C3819C3FD868 /* Pods-新闻阅读APP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-新闻阅读APP.debug.xcconfig"; path = "Target Support Files/Pods-新闻阅读APP/Pods-新闻阅读APP.debug.xcconfig"; sourceTree = "<group>"; };
+		A07A4FEDE5C5A639C8DE71F7 /* Pods_____APP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____APP.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047C479A238FBD0600C79D75 /* Pods_新闻阅读APP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +75,8 @@
 			children = (
 				04972F34238A68A000F2845D /* 新闻阅读APP */,
 				04972F33238A68A000F2845D /* Products */,
+				0E0280C6773F32202B5A2258 /* Pods */,
+				E51966622B9E4C3BAA2B1A57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				04972F5F238B941500F2845D /* Extension */,
+				04972F6B238C1F3300F2845D /* Common.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -100,6 +130,7 @@
 		04972F4E238A845200F2845D /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				04972F65238BC8C700F2845D /* Base */,
 				04972F53238A845200F2845D /* Main */,
 				04972F4F238A845200F2845D /* Home */,
 				04972F51238A845200F2845D /* Message */,
@@ -164,6 +195,42 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		04972F65238BC8C700F2845D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				04972F68238BCD1300F2845D /* VisitorLoginView */,
+				04972F66238BC8FE00F2845D /* BaseTableViewController.swift */,
+			);
+			name = Base;
+			path = "新闻阅读APP/Classes/Base";
+			sourceTree = SOURCE_ROOT;
+		};
+		04972F68238BCD1300F2845D /* VisitorLoginView */ = {
+			isa = PBXGroup;
+			children = (
+				04972F69238BCD5800F2845D /* VisitorLoginView.swift */,
+			);
+			path = VisitorLoginView;
+			sourceTree = "<group>";
+		};
+		0E0280C6773F32202B5A2258 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CC167424564C3819C3FD868 /* Pods-新闻阅读APP.debug.xcconfig */,
+				3CA5FE8E86E6F108854ADA45 /* Pods-新闻阅读APP.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E51966622B9E4C3BAA2B1A57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				047C4799238FBD0600C79D75 /* Pods_新闻阅读APP.framework */,
+				A07A4FEDE5C5A639C8DE71F7 /* Pods_____APP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,9 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04972F46238A68A200F2845D /* Build configuration list for PBXNativeTarget "新闻阅读APP" */;
 			buildPhases = (
+				6C95B3BD86365B6BB48FB105 /* [CP] Check Pods Manifest.lock */,
 				04972F2E238A68A000F2845D /* Sources */,
 				04972F2F238A68A000F2845D /* Frameworks */,
 				04972F30238A68A000F2845D /* Resources */,
+				2DB37B8ACAD758AAC71120AD /* [CP] Embed Pods Frameworks */,
+				047C479C238FBD0700C79D75 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,6 +299,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2DB37B8ACAD758AAC71120AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-新闻阅读APP/Pods-新闻阅读APP-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-新闻阅读APP/Pods-新闻阅读APP-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-新闻阅读APP/Pods-新闻阅读APP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C95B3BD86365B6BB48FB105 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-新闻阅读APP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04972F2E238A68A000F2845D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -236,10 +348,13 @@
 			files = (
 				04972F5E238A855B00F2845D /* ProfileTableViewController.swift in Sources */,
 				04972F61238B946300F2845D /* UIButton-Extension.swift in Sources */,
+				04972F67238BC8FE00F2845D /* BaseTableViewController.swift in Sources */,
 				04972F58238A851200F2845D /* HomeTableViewController.swift in Sources */,
 				04972F56238A84DD00F2845D /* MainViewController.swift in Sources */,
 				04972F5A238A853500F2845D /* MessageTableViewController.swift in Sources */,
 				04972F36238A68A000F2845D /* AppDelegate.swift in Sources */,
+				04972F6A238BCD5800F2845D /* VisitorLoginView.swift in Sources */,
+				04972F6C238C1F3300F2845D /* Common.swift in Sources */,
 				04972F5C238A854F00F2845D /* DiscoverTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +489,7 @@
 		};
 		04972F47238A68A200F2845D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CC167424564C3819C3FD868 /* Pods-新闻阅读APP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -393,6 +509,7 @@
 		};
 		04972F48238A68A200F2845D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CA5FE8E86E6F108854ADA45 /* Pods-新闻阅读APP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
