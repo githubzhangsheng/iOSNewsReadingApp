@@ -7,6 +7,7 @@
 //
 
 import UIKit
-
+// MARK: - 全局通知定义
+let NewsSwitchRootViewControllerNotification = "NewsSwitchRootViewControllerNotification"
 let themeColor = UIColor.orange
 

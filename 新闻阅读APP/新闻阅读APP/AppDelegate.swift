@@ -14,42 +14,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // 设置主题色
+        
+        
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
+        window?.rootViewController = defaultRootViewController
         window?.makeKeyAndVisible()
-        
-        // 设置主题色
         setThemeColor()
         
-        // 设置根视图控制器
-        window?.rootViewController = MainViewController()
-        
-        
+        // 监听通知
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: NewsSwitchRootViewControllerNotification), object: nil, queue: nil) { (notification) in
+            print(Thread.current)
+            print(notification)
+        }
+
         return true
+    }
+    
+    deinit {
+        // 注销通知
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NewsSwitchRootViewControllerNotification), object: nil)
+        
+        
     }
     
     // 设置主题色
     private func setThemeColor() {
-//        UINavigationBar.appearance().tintColor = UIColor.orange
         UITabBar.appearance().tintColor = themeColor
     }
 
-    // MARK: UISceneSession Lifecycle
 
-//    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-//        // Called when a new scene session is being created.
-//        // Use this method to select a configuration to create the new scene with.
-//        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-//    }
-
-//    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-//        // Called when the user discards a scene session.
-//        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-//        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-//    }
-
-
+}
+// MARK - 界面切换代码
+extension AppDelegate {
+    private var defaultRootViewController: UIViewController {
+        // 1. 判断是否登录
+        if UserAccountViewModel.sharedUserAccount.userLogin {
+            return isNewVersion ? NewFeatureCollectionViewController() : WelcomeViewController()
+        }
+        // 2. 没有登录返回主控制器
+        return MainViewController()
+    }
+    // 判断是否是新版本
+    private var isNewVersion: Bool {
+        // 1. 当前的版本
+        let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let version = Double(currentVersion)!
+        print("当前版本",version)
+        
+        // 2. 老的版本，把当前的版本保存在用户偏好里
+        let sandboxVersionKey = "sandboxVersionKey"
+        let sandboxVersion = UserDefaults.standard.double(forKey: sandboxVersionKey)
+        print("之前的版本\(sandboxVersion)")
+        
+        // 3. 保存当前版本
+        UserDefaults.standard.set(version, forKey: sandboxVersionKey)
+        return version > sandboxVersion
+    }
 }
 
