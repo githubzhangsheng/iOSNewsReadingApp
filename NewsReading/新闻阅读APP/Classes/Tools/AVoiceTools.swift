@@ -13,11 +13,11 @@ class SpeechUtteranceManager: NSObject {
     // 单例
     public static let shared = SpeechUtteranceManager()
     
+    // 文字转语音
     let speechSynthesizer = AVSpeechSynthesizer()
     
     override init() {
         super.init()
-//        speechSynthesizer.delegate = self
     }
     
     func handleSpeechUtterance(string: String) {
@@ -39,4 +39,5 @@ class SpeechUtteranceManager: NSObject {
         // 播放合成語音
         speechSynthesizer.speak(speechUtterance)
     }
+  
 }

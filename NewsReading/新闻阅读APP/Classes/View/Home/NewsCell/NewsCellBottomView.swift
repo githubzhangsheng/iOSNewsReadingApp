@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import SVProgressHUD
 
 /// 新闻cell底部视图
 class NewsCellBottomView: UIView {
@@ -26,6 +27,8 @@ class NewsCellBottomView: UIView {
             contentText = "新闻标题:" + (self.viewModel?.newsObject.title)!
             contentText! += "，新闻来源："+(self.viewModel?.newsObject.source)!
             contentText! += "，新闻内容如下：" + (self.viewModel?.newsObject.content)!
+            commentButton.setTitle(" "+(self.viewModel?.getTotalComments() ?? " 0"), for: .normal)
+            likeButton.setTitle(" "+(self.viewModel?.getTotalThumbup() ?? " 0"), for: .normal)
         }
     }
     
@@ -100,9 +103,10 @@ extension NewsCellBottomView {
     }
     private func addTarget() {
         voiceButton.addTarget(self, action: #selector(voiceBtnClick), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(likeBtnClick), for: .touchUpInside)
+        commentButton.addTarget(self, action: #selector(commentBtnClick), for: .touchUpInside)
     }
     @objc private func voiceBtnClick() {
-        
         if SpeechUtteranceManager.shared.speechSynthesizer.isSpeaking {
             // 停止播放
             SpeechUtteranceManager.shared.speechSynthesizer.stopSpeaking(at: .immediate)
@@ -113,6 +117,25 @@ extension NewsCellBottomView {
             SpeechUtteranceManager.shared.handleSpeechUtterance(string: self.contentText ?? "暂无内容，朗读失败。")
             configureStartSpeakingUI()
         }
+    }
+    @objc private func likeBtnClick() {
+        NetworkTools.sharedTools.thumbup(uid: UserAccountViewModel.sharedUserAccount.getUID(), newsid: String(self.viewModel!.getNewsID())) { (res, err) in
+            if err != nil {
+                SVProgressHUD.showInfo(withStatus: "点赞失败，请重试！")
+            }
+            SVProgressHUD.setMaximumDismissTimeInterval(0.5)
+            SVProgressHUD.showSuccess(withStatus: "点赞成功！")
+            
+            self.likeButton.setImage(UIImage(named: "timeline_icon_like"), for: .normal)
+            let count:Int = Int((self.viewModel?.getTotalThumbup())!)!
+            self.likeButton.setTitle(" \(count+1)", for: .normal)
+            self.likeButton.isEnabled = false
+        }
+        
+    }
+    /// 查看评论按钮被点击
+    @objc private func commentBtnClick() {
+        NotificationCenter.default.post(name: Notification.Name.init("aaa"), object: self.viewModel?.getNewsID())
     }
     /// 播放结束执行的事件
     func configureStopSpeakingUI() {

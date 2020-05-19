@@ -17,9 +17,6 @@ class HomeTableViewController: UITableViewController {
     
     // 新闻数据列表模型
     private lazy var listViewModel = NewsListViewModel()
-    
-    // 新闻数据数组
-    var dataList: [NewsObject]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +30,8 @@ class HomeTableViewController: UITableViewController {
         
 
         // 自动计算行高 - 需要一个自上而下的自动布局的控件，指定一个向下的约束，需要在 NewsCell 的自动布局中设置
-        tableView.estimatedRowHeight = 200
-        tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 200
+        self.tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor.lightGray
         
         // 下拉刷新（默认没有）
@@ -45,6 +42,15 @@ class HomeTableViewController: UITableViewController {
 
         // 设置 tintColor ，即设置小菊花的前景色
         self.refreshControl?.tintColor = UIColor.clear
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(pushCommentsList), name: NSNotification.Name(rawValue: "aaa"), object: nil)
+        
+    }
+    // MARK: 查看评论列表
+    @objc func pushCommentsList(obj:Notification){
+        let id:String! = obj.object as? String
+        let commentsPage = CommentsTableViewController(newsid: id)
+        self.navigationController?.pushViewController(commentsPage, animated: true)
         
     }
     // 加载数据
@@ -62,6 +68,9 @@ class HomeTableViewController: UITableViewController {
             
             self.tableView.reloadData()
         }
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

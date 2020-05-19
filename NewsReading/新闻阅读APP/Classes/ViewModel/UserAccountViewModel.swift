@@ -38,7 +38,6 @@ class UserAccountViewModel {
         // 1. 如果token有值，说明登录成功
         // 2. 如果没有过期，说明登录有效
         return account?.access_token != nil && !isExpired
-//        return false
     }
     // 用户头像 URL
     var avatarURL: URL {
@@ -61,11 +60,13 @@ class UserAccountViewModel {
         // 过期了返回 true
         return true
     }
+    func getUID()->String {
+        return account?.uid ?? "-1"
+    }
     /// 构造函数 - 私有化，会要求外部只能通过单例常量访问，而不能()实例化
     private init() {
         // 从沙盒解档数据,恢复当前数据，从磁盘中读写
         account = NSKeyedUnarchiver.unarchiveObject(withFile: accountPath) as? UserAccount
-        
         // 判断token是否过期
         if isExpired {
             print("已经过期")
@@ -89,7 +90,6 @@ extension UserAccountViewModel {
             
             let jsonData = JSON(result!)
             let code = jsonData["code"].int
-            print(jsonData)
             if code == 0 {
                 print("登录成功")
                 self.account = UserAccount(jsonData: jsonData)
@@ -109,11 +109,9 @@ extension UserAccountViewModel {
                 finished(3)
                 return
             }
-            
-            let resJsonData = JSON(result!)
-            account.avatar_large = resJsonData["avatar_large"].string
+            let resJsonData = JSON(result!)["data"]
+            account.avatar_large = resJsonData["avatar"].string
             account.nickname = resJsonData["nickname"].string
-            account.expires_time = resJsonData["expires_time"].double!
             account.saveUserAccount()
             finished(0)
         }

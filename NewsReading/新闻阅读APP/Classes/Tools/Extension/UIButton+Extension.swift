@@ -46,7 +46,16 @@ extension UIButton {
         
         sizeToFit()
     }
-    
+    convenience init(title: String, fontSize:CGFloat, color: UIColor, bgColor: UIColor) {
+        self.init()
+        
+        setTitle(title, for: .normal)
+        setTitleColor(color, for: .normal)
+        
+        titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
+        
+        backgroundColor = bgColor
+    }
     convenience init(title: String, fontSize:CGFloat, color: UIColor, imageName: String, width: CGFloat) {
         self.init()
         

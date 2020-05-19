@@ -11,7 +11,7 @@ import SwiftyJSON
 /// 新闻模型
 class NewsObject: NSObject {
     /// 新闻id
-    var id: Int = 0
+    var id: String!
     /// 新闻标题
     var title: String!
     /// 新闻信息内容(简介)
@@ -29,15 +29,25 @@ class NewsObject: NSObject {
     /// 评论总数
     var totalcomments: String = "0"
     
-    init(jsonData: JSON) {
+   init(jsonData: JSON) {
         super.init()
-        id = jsonData["newsid"].int ?? 0
+        self.id = String(jsonData["newsid"].int ?? -1)
         content = jsonData["content"].string ?? "新闻内容解析失败"
         title = jsonData["title"].string ?? "新闻标题解析失败"
         publish_time = jsonData["publish_time"].string ?? "时间解析失败"
         source = jsonData["source"].string ?? "解析失败"
         totalthumbup = String(jsonData["totalthumbup"].int ?? 0)
         totalcomments = String(jsonData["totalcomments"].int ?? 0)
+    }
+    init(dict: [String: Any]) {
+        super.init()
+        id = dict["docid"] as? String
+        title = dict["title"] as? String
+        publish_time = dict["ptime"] as? String
+        source = dict["source"] as? String
+        totalthumbup = String(dict["priority"] as! Int)
+        totalcomments = String(dict["commentCount"] as! Int)
+        content = dict["digest"] as? String
     }
     
 }

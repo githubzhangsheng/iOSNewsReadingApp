@@ -17,11 +17,7 @@ import SwiftyJSON
 class UserAccount: NSObject, NSCoding{
     
     var access_token: String?
-    var expires_time: TimeInterval = 0 {
-        didSet {
-            expires_date = NSDate(timeIntervalSince1970: expires_time)
-        }
-    }
+    var expires_time: TimeInterval = 0
     var uid: String?
     
     // 过期的日期
@@ -38,6 +34,8 @@ class UserAccount: NSObject, NSCoding{
         super.init()
         self.access_token = jsonData["access_token"].string
         self.uid = String(jsonData["uid"].int ?? -1)
+        self.expires_time = (jsonData["expires_time"].number) as! TimeInterval
+        self.expires_date = NSDate(timeIntervalSince1970: expires_time)
     }
     
     // MARK: - 保存当前对象`键值`归档
@@ -56,6 +54,7 @@ class UserAccount: NSObject, NSCoding{
         super.init()
 
         access_token = coder.decodeObject(forKey: "access_token") as? String
+        NetworkTools.sharedTools.accessToken = access_token
         expires_date = coder.decodeObject(forKey: "expires_date") as? NSDate
         uid = coder.decodeObject(forKey: "uid") as? String
         avatar_large = coder.decodeObject(forKey: "avatar_large") as? String

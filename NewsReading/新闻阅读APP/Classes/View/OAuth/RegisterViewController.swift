@@ -16,11 +16,12 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     var labelUsername:UILabel = UILabel(title: "请输入注册的用户名：", fontSize: 18)
     var labelPassword:UILabel = UILabel(title: "请设定一个密码：", fontSize: 18)
     var labelConfirmPassword:UILabel = UILabel(title: "重复输入确认密码：", fontSize: 18)
-    var labelTelephone:UILabel = UILabel(title: "请输入手机号（用来找回密码）：", fontSize: 18)
+    var labelNickname:UILabel = UILabel(title: "请选择输入昵称：", fontSize: 18)
     var txtTelephone:UITextField = UITextField()
     var txtUsername:UITextField = UITextField()
     var txtPassword:UITextField = UITextField()
     var txtConfirmPassword:UITextField = UITextField()
+    var txtNickname:UITextField = UITextField()
     private lazy var registerButton:UIButton = UIButton(title: "立即注册", color: UIColor.black, backImageName: "common_button_white_disable")
 
     // 注册界面的头图
@@ -33,6 +34,34 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     @objc private func close() {
         dismiss(animated: true, completion: nil)
+    }
+    @objc func registerClick () {
+        print("开始注册")
+        if(txtUsername.text == "") {
+            SVProgressHUD.showInfo(withStatus: "用户名不可为空！")
+        } else if (txtPassword.text == ""){
+            SVProgressHUD.showInfo(withStatus: "密码不可为空！")
+        } else if (txtPassword.text != txtConfirmPassword.text) {
+            SVProgressHUD.showInfo(withStatus: "两次密码输入不一致！")
+        } else {
+            if txtNickname.text == "" {
+                txtNickname.text  = txtUsername.text
+            }
+            
+            NetworkTools.sharedTools.register(username: txtUsername.text!, password: txtPassword.text!, nickname: txtNickname.text!) { (result, err) in
+                if err != nil {
+                    print("出错了")
+                    return
+                }
+                let json = JSON(result!)
+                if json["code"] == 1 {
+                    SVProgressHUD.showInfo(withStatus: "用户名已经存在，请重新输入!")
+                } else {
+                    SVProgressHUD.showInfo(withStatus: "注册成功，请登录！")
+                    self.close()
+                }
+            }
+        }
     }
     
     func setupUI() {
@@ -49,14 +78,15 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(labelUsername)
         self.view.addSubview(labelPassword)
         self.view.addSubview(labelConfirmPassword)
-        self.view.addSubview(labelTelephone)
+        self.view.addSubview(labelNickname)
         
         self.view.addSubview(txtUsername)
         self.view.addSubview(txtPassword)
-        self.view.addSubview(txtTelephone)
+        self.view.addSubview(txtNickname)
         self.view.addSubview(txtConfirmPassword)
         
         self.view.addSubview(registerButton)
+        
         
         headImage.snp_makeConstraints { (make) in
             make.centerX.equalTo(view.snp_centerX)
@@ -109,25 +139,27 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
              make.left.equalTo(txtUsername.snp_left)
              make.height.equalTo(txtUsername.snp_height)
          }
-        labelTelephone.snp_makeConstraints { (make) in
+        labelNickname.snp_makeConstraints { (make) in
               make.top.equalTo(txtConfirmPassword.snp_bottom).offset(gap)
               make.left.equalTo(labelPassword.snp_left)
         }
-        txtTelephone.layer.cornerRadius = 5
-        txtTelephone.layer.borderColor = UIColor.lightGray.cgColor
-        txtTelephone.layer.borderWidth = 0.5
-        txtTelephone.snp_makeConstraints { (make) in
-             make.top.equalTo(labelTelephone.snp_bottom).offset(gap)
-             make.width.equalTo(txtUsername)
-             make.left.equalTo(txtUsername.snp_left)
-             make.height.equalTo(txtUsername.snp_height)
-         }
+        txtNickname.layer.cornerRadius = 5
+        txtNickname.layer.borderColor = UIColor.lightGray.cgColor
+        txtNickname.layer.borderWidth = 0.5
+        txtNickname.snp_makeConstraints { (make) in
+            make.top.equalTo(labelNickname.snp_bottom).offset(gap)
+            make.width.equalTo(txtUsername)
+            make.left.equalTo(txtUsername.snp_left)
+            make.height.equalTo(txtUsername.snp_height)
+        }
+        txtNickname.placeholder = "若昵称为空，则昵称默认为用户名"
         registerButton.snp_makeConstraints { (make) in
-            make.top.equalTo(txtTelephone.snp_bottom).offset(gap+10)
+            make.top.equalTo(txtNickname.snp_bottom).offset(gap+10)
             make.centerX.equalTo(borderRegister.snp_centerX)
             make.width.equalTo(100)
             make.height.equalTo(35)
         }
+        registerButton.addTarget(self, action:#selector(registerClick), for: .touchUpInside)
         
     }
     

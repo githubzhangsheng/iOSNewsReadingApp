@@ -1,4 +1,4 @@
-framework module Pods_____APP {
+module Pods_____APP {
   umbrella header "Pods-新闻阅读APP-umbrella.h"
 
   export *

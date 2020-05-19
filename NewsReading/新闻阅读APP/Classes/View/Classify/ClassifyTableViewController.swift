@@ -18,14 +18,27 @@ class ClassifyTableViewController: UITableViewController {
         view.backgroundColor = UIColor.white
         // 添加 SGPagingView
         setupSGPagingView()
+        NotificationCenter.default.addObserver(self, selector: #selector(pushCommentsList), name: NSNotification.Name(rawValue: "showCommentsList"), object: nil)
     }
-
-
+    // MARK: 查看评论列表
+    @objc func pushCommentsList(obj:Notification){
+        let id:String! = obj.object as? String
+        let commentsPage = CommentsTableViewController(newsid: id)
+        self.navigationController?.pushViewController(commentsPage, animated: true)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 // MARK: - - 设置 SGPagingView
 extension ClassifyTableViewController {
     private func setupSGPagingView() {
+        
         let pageTitleViewY: CGFloat = 0.0
         
         let titles = ["科技", "体育", "财经", "游戏"]
@@ -46,7 +59,7 @@ extension ClassifyTableViewController {
         let fourVC = NewsTableViewController(name: "游戏")
         let childVCs = [oneVC, twoVC, threeVC, fourVC]
         
-        let contentViewHeight = view.frame.size.height - self.pageTitleView!.frame.maxY - 100
+        let contentViewHeight = view.frame.size.height - self.pageTitleView!.frame.maxY - 90
         let contentRect = CGRect(x: 0, y: (pageTitleView?.frame.maxY)!, width: view.frame.size.width, height: contentViewHeight)
         self.pageContentScrollView = SGPageContentScrollView(frame: contentRect, parentVC: self, childVCs: childVCs)
         pageContentScrollView?.delegateScrollView = self

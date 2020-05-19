@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // queue: nil 为主线程
         // weak self,
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: NewsSwitchRootViewControllerNotification), object: nil, queue: nil) { [weak self](notification) in
-            print(Thread.current)
-            print(notification)
+//            print(Thread.current)
+//            print(notification)
             
             let vc = notification.object != nil ? WelcomeViewController() : MainViewController()
             // 监听到通知切换控制器
